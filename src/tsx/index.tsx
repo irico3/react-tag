@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import store from './stores'
 import GlobalStyle from './style/GlobalStyle'
 import 'react-hot-loader'
 
@@ -13,20 +15,22 @@ import Header from './views/components/block/Header'
 
 // react-router-domでページ遷移
 ReactDOM.render(
-  <>
-    <GlobalStyle />
-    <Router>
-      <Header />
-      <Switch>
-        <Route path="/" exact component={Top} />
-        <Route path="/list/white" exact component={TagList} />
-        <Route path="/list/blue" exact component={TagList} />
-        <Route path="/list/green" exact component={TagList} />
-        <Route path="/list/red" exact component={TagList} />
-        <Route path="/list/yellow" exact component={TagList} />
-      </Switch>
-    </Router>
-  </>,
+  <Provider store={store}>
+    <>
+      <GlobalStyle />
+      <Router>
+        <Header />
+        <Switch>
+          <Route path="/" exact component={Top} />
+          <Route path="/list/white" exact render={() => <TagList clrType="white" />} />
+          <Route path="/list/blue" exact render={() => <TagList clrType="blue" />} />
+          <Route path="/list/green" exact render={() => <TagList clrType="green" />} />
+          <Route path="/list/red" exact render={() => <TagList clrType="red" />} />
+          <Route path="/list/yellow" exact render={() => <TagList clrType="yellow" />} />
+        </Switch>
+      </Router>
+    </>
+  </Provider>,
   app
 )
 
