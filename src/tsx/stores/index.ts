@@ -4,8 +4,8 @@ import tagListSlice from './slices/tagListSlice'
 
 const store = configureStore({
   reducer: {
-    tagList: tagListSlice
-  }
+    tagList: tagListSlice,
+  },
 })
 
 export default store

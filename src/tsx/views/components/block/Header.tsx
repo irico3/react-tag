@@ -3,7 +3,7 @@ import { css } from '@emotion/core'
 import { Link } from 'react-router-dom'
 
 // components
-import { HeaderColorBtn } from '../../../views/components/atoms/HeaderColorBtn'
+import { HeaderColorBtn } from '../atoms/HeaderColorBtn'
 // style
 import { HeaderContainer } from '../../../style/components/block/Header'
 

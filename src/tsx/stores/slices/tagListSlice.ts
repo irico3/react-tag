@@ -14,23 +14,23 @@ const tagListSlice = createSlice({
   initialState: {
     nextId: 1,
     data: [{
-      color: "white",
-      text: "夜ネギを買う",
+      color: 'white',
+      text: '夜ネギを買う',
       id: 0,
-    }]
+    }],
   },
-  //各reducer 第一引数でstate情報を受け取り、第二引数でユーザーが操作した情報を受け取る
+  // 各reducer 第一引数でstate情報を受け取り、第二引数でユーザーが操作した情報を受け取る
   reducers: {
     addTag: (state, action) => {
       state.data = [
         ...state.data,
         {
           ...action.payload,
-          id: state.nextId
-        }
+          id: state.nextId,
+        },
       ]
-      state.nextId = state.nextId + 1
-    }
+      state.nextId += 1
+    },
   },
 })
 
@@ -40,9 +40,7 @@ export const { addTag } = tagListSlice.actions
 // 特定の色のタグのみ
 export const colorSelect = (color: string, state: RootState) => {
   const tags: tag[] = Object.values(state.tagList.data)
-  return tags.filter((tag) => {
-    return tag.color === color
-  })
+  return tags.filter((thisTag) => thisTag.color === color)
 }
 
 // reducerをexport → storeへ

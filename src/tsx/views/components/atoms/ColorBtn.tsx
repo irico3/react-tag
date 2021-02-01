@@ -11,15 +11,18 @@ interface IcolorBtn {
 }
 
 export const ColorBtn: FC<IcolorBtn> = ({ clrType, setClrHandler }) => {
-  const txt = colors[clrType].txt
+  const { txt } = colors[clrType]
 
   return (
-    <button css={ButtonCss(clrType)} onClick={() => setClrHandler(clrType)}>
+    <button
+      css={ButtonCss(clrType)}
+      onClick={() => setClrHandler(clrType)}
+      type="button"
+    >
       {txt}
     </button>
   )
 }
-
 
 const ButtonCss = (clrType: string) => css`
   background: ${colors[clrType].background};

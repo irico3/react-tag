@@ -36,11 +36,14 @@ module.exports = {
             },
         ],
         'no-use-before-define': 'off',
-        '@typescript-eslint/no-use-before-define': ['error'],
-        'import/resolver': {
-            node: {
-                extensions: ['.js', '.jsx', '.ts', '.tsx'],
-            },
-        },
+        '@typescript-eslint/no-use-before-define': 'off',
+        'react/jsx-filename-extension': [
+            1,
+            { extensions: ['.js', '.jsx', 'ts', 'tsx'] },
+        ],
+        'no-param-reassign': 'off',
+        'no-unused-vars': 'off',
+        'import/prefer-default-export': 'off',
+        'react/prop-types': 'off',
     },
 }

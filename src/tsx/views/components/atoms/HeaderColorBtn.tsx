@@ -3,8 +3,7 @@ import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
 import { css } from '@emotion/core'
 
-
-//style
+// style
 import { colors } from '../../../style/components/atoms/Button'
 
 interface IHeaderColorBtn {
@@ -16,7 +15,8 @@ export const HeaderColorBtn: FC<IHeaderColorBtn> = ({ clrType }) => (
     to={`/list/${clrType}`}
     css={HeaderColorBtnCss(clrType)}
   >
-    {colors[clrType].txt}一覧
+    {colors[clrType].txt}
+    一覧
   </Link>
 )
 

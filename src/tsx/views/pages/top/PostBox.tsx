@@ -4,7 +4,7 @@ import { css } from '@emotion/core'
 
 // components
 import { ColorBtn } from '../../components/atoms/ColorBtn'
-//store
+// store
 import { addTag } from '../../../stores/slices/tagListSlice'
 // style
 import { colors } from '../../../style/components/atoms/Button'
@@ -17,22 +17,22 @@ export const PostBox: FC = () => {
   const [postTxt, setPostTxt] = useState('')
   const dispatch = useDispatch()
 
-  /////////////////////
+  /// //////////////////
   // state変更用メソッド
-  const setClrHandler = (color: string) => {
-    setColor(color)
+  const setClrHandler = (thisColor: string) => {
+    setColor(thisColor)
   }
   const setTxtHandler = (
-    e: React.ChangeEvent<HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLTextAreaElement>,
   ) => {
     setPostTxt(e.target.value)
   }
-  /////////////////////
+  /// //////////////////
   // post用メソッド
   const postHandler = () => {
     dispatch(addTag({
-      color: color,
-      text: postTxt
+      color,
+      text: postTxt,
     }))
     // データをクリア
     setPostTxt('')
@@ -68,9 +68,13 @@ export const PostBox: FC = () => {
             setClrHandler={setClrHandler}
           />
           <button
+            type="submit"
             css={PostBtnCss}
             onClick={postHandler}
-          >Postする</button>
+          >
+            Postする
+
+          </button>
         </div>
       </div>
     </section>

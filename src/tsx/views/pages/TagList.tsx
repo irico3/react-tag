@@ -16,11 +16,14 @@ export const TagList: FC<ItagList> = ({ clrType }) => {
   const data = useSelector((state) => colorSelect(clrType, state))
   return (
     <main>
-      {data.map(tagData => (
+      {data.map((tagData) => (
         <div
           css={TagCss(clrType)}
           key={tagData.id}
-        >{tagData.text}</div>
+        >
+          {tagData.text}
+
+        </div>
       ))}
     </main>
   )
