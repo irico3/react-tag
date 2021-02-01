@@ -2,16 +2,16 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
+import 'react-hot-loader'
 import store from './stores'
 import GlobalStyle from './style/GlobalStyle'
-import 'react-hot-loader'
-
-const app = document.getElementById('app')
 // page
 import Top from './views/pages/top/Top'
 import { TagList } from './views/pages/TagList'
 // components
 import Header from './views/components/block/Header'
+
+const app = document.getElementById('app')
 
 // react-router-domでページ遷移
 ReactDOM.render(
@@ -31,10 +31,9 @@ ReactDOM.render(
       </Router>
     </>
   </Provider>,
-  app
+  app,
 )
 
-if (module.hot)
-{
+if (module.hot) {
   module.hot.accept()
 }
