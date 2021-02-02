@@ -4,26 +4,18 @@ import { Link } from 'react-router-dom'
 
 // components
 import { HeaderColorBtn } from '../atoms/HeaderColorBtn'
+import { HeaderUser } from '../atoms/HeaderUser'
+import { HeaderMsg } from '../atoms/HeaderMsg'
 // style
 import { HeaderContainer } from '../../../style/components/block/Header'
 
 export default function Header() {
-  const [userData, setUserData] = useState({
-    name: 'irico',
-    age: 25,
-    message: '魚大好き',
-  })
-
   return (
     <div css={HeaderContainer}>
       <h1>
         <Link to="/" css={TitleCss}>Tag React</Link>
       </h1>
-      <p css={MessageCss}>
-        ようこそ
-        {userData.name}
-        さん
-      </p>
+      <HeaderUser />
       <div css={BtnsCss}>
         <HeaderColorBtn clrType="white" />
         <HeaderColorBtn clrType="blue" />
@@ -31,15 +23,7 @@ export default function Header() {
         <HeaderColorBtn clrType="red" />
         <HeaderColorBtn clrType="yellow" />
       </div>
-      <button
-        onClick={() => setUserData({
-          ...userData,
-          name: 'sakana',
-        })}
-        type="button"
-      >
-        名前を変える
-      </button>
+      <HeaderMsg />
     </div>
   )
 }
@@ -52,8 +36,4 @@ const BtnsCss = css`
 const TitleCss = css`
   color: #fff;
   text-decoration: none;
-`
-
-const MessageCss = css`
-  margin-left: 20px;
 `
