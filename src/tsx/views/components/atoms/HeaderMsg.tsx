@@ -2,6 +2,7 @@ import React, { useState, FC } from 'react'
 
 export const HeaderMsg: FC = () => {
   const [message, setMessage] = useState('魚大好き')
+
   return (
     <>
       <p>{message}</p>

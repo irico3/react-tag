@@ -1,4 +1,6 @@
-import React, { useState, FC } from 'react'
+import React, {
+  useState, useRef, FC,
+} from 'react'
 import { useDispatch } from 'react-redux'
 import { css } from '@emotion/core'
 
@@ -14,36 +16,41 @@ import { colors } from '../../../style/components/atoms/Button'
  */
 export const PostBox: FC = () => {
   const [color, setColor] = useState('white')
-  const [postTxt, setPostTxt] = useState('')
+  // const [postTxt, setPostTxt] = useState('')
   const dispatch = useDispatch()
+
+  const ref = useRef<HTMLTextAreaElement>(null)
 
   /// //////////////////
   // state変更用メソッド
   const setClrHandler = (thisColor: string) => {
     setColor(thisColor)
   }
-  const setTxtHandler = (
-    e: React.ChangeEvent<HTMLTextAreaElement>,
-  ) => {
-    setPostTxt(e.target.value)
-  }
+  // const setTxtHandler = (
+  //   e: React.ChangeEvent<HTMLTextAreaElement>,
+  // ) => {
+  //   setPostTxt(e.target.value)
+  // }
   /// //////////////////
   // post用メソッド
   const postHandler = () => {
+    if (ref.current === null) return
     dispatch(addTag({
       color,
-      text: postTxt,
+      text: ref.current.value,
     }))
     // データをクリア
-    setPostTxt('')
+    ref.current.value = ''
+    // setPostTxt('')
   }
 
   return (
     <section css={PostBoxCss}>
       <textarea
+        ref={ref}
         css={TextBoxMain(color)}
-        onChange={setTxtHandler}
-        value={postTxt}
+        // onChange={setTxtHandler}
+        // value={postTxt}
       />
       <div css={BottomBlockCss}>
         <div>

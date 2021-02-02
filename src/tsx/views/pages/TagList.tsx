@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { useMemo, FC } from 'react'
 import { css } from '@emotion/core'
 // store
 import { useSelector } from '../../stores/index'
@@ -14,17 +14,22 @@ interface ItagList {
  */
 export const TagList: FC<ItagList> = ({ clrType }) => {
   const data = useSelector((state) => colorSelect(clrType, state))
+
+  const tagListDom = useMemo(
+    () => data.map((tagData) => (
+      <div
+        css={TagCss(clrType)}
+        key={tagData.id}
+      >
+        {tagData.text}
+
+      </div>
+    )), [data],
+  )
+
   return (
     <main>
-      {data.map((tagData) => (
-        <div
-          css={TagCss(clrType)}
-          key={tagData.id}
-        >
-          {tagData.text}
-
-        </div>
-      ))}
+      {tagListDom}
     </main>
   )
 }
