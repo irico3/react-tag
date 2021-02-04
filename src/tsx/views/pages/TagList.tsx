@@ -1,5 +1,7 @@
-import React, { useMemo, FC } from 'react'
+import React, { FC } from 'react'
 import { css } from '@emotion/core'
+import { FixedSizeList as List } from 'react-window';
+
 // store
 import { useSelector } from '../../stores/index'
 import { colorSelect } from '../../stores/slices/tagListSlice'
@@ -14,29 +16,35 @@ interface ItagList {
  */
 export const TagList: FC<ItagList> = ({ clrType }) => {
   const data = useSelector((state) => colorSelect(clrType, state))
-
-  const tagListDom = useMemo(
-    () => data.map((tagData) => (
-      <div
-        css={TagCss(clrType)}
-        key={tagData.id}
-      >
-        {tagData.text}
-
-      </div>
-    )), [data],
+  
+  const tagListItem = ({ index, style }) => (
+    <div
+      style={style}
+      css={TagCss(clrType)}
+      key={data[index].id}
+    >
+      {data[index].text}
+    </div>
   )
 
   return (
     <main>
-      {tagListDom}
+      <List
+        height={500}
+        itemCount={data.length - 1}
+        itemSize={56}
+      >
+        {tagListItem}
+      </List>
     </main>
   )
 }
 
 const TagCss = (clrType: string) => css`
   border: 1px solid #ccc;
-  padding: 20px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
   background: ${colors[clrType].background};
   white-space: pre-wrap;
 `
