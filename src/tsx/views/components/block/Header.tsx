@@ -30,6 +30,7 @@ export default function Header() {
         <HeaderColorBtn clrType="red" />
         <HeaderColorBtn clrType="yellow" />
       </div>
+      <p>{userData.message}</p>
       <button
         onClick={() => setUserData({
           ...userData,
