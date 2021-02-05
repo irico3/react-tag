@@ -33,11 +33,11 @@ export default function Header() {
       <button
         onClick={() => setUserData({
           ...userData,
-          name: 'sakana',
+          message: 'react大好き',
         })}
         type="button"
       >
-        名前を変える
+        メッセージを変える
       </button>
     </div>
   )
