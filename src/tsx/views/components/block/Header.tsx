@@ -10,7 +10,6 @@ import { HeaderContainer } from '../../../style/components/block/Header'
 export default function Header() {
   const [userData, setUserData] = useState({
     name: 'irico',
-    age: 25,
     message: '魚大好き',
   })
 
