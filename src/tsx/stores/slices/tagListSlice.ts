@@ -4,16 +4,18 @@ import { RootState } from '../index'
 interface tag {
   color: string,
   text: string,
+  isFavorite: boolean,
   id: number
 }
 
-let data: tag[] = [];
-for(let i = 0; i < 100; i++){
-    data.push({
-        color: 'white',
-        text: '夜ネギを買う',
-        id: i
-    })
+const data: tag[] = []
+for (let i = 0; i < 100; i++) {
+  data.push({
+    color: 'white',
+    text: '夜ネギを買う',
+    isFavorite: false,
+    id: i,
+  })
 }
 
 const tagListSlice = createSlice({

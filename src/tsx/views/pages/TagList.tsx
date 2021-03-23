@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { css } from '@emotion/core'
-import { FixedSizeList as List } from 'react-window';
+import { FixedSizeList as List } from 'react-window'
 
 // store
 import { useSelector } from '../../stores/index'
@@ -16,13 +16,19 @@ interface ItagList {
  */
 export const TagList: FC<ItagList> = ({ clrType }) => {
   const data = useSelector((state) => colorSelect(clrType, state))
-  
+
   const tagListItem = ({ index, style }) => (
     <div
       style={style}
       css={TagCss(clrType)}
       key={data[index].id}
     >
+      <button
+        type="button"
+        style={favBtnCss}
+      >
+        ⭐️
+      </button>
       {data[index].text}
     </div>
   )
@@ -47,4 +53,8 @@ const TagCss = (clrType: string) => css`
   padding: 0 20px;
   background: ${colors[clrType].background};
   white-space: pre-wrap;
+`
+
+const favBtnCss = css`
+  margin-right: 20px
 `
