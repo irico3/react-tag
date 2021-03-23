@@ -37,7 +37,7 @@ export const TagList: FC<ItagList> = ({ clrType }) => {
     <main>
       <List
         height={500}
-        itemCount={data.length - 1}
+        itemCount={data.length}
         itemSize={56}
       >
         {tagListItem}
