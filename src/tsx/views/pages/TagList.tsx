@@ -23,12 +23,6 @@ export const TagList: FC<ItagList> = ({ clrType }) => {
       css={TagCss(clrType)}
       key={data[index].id}
     >
-      <button
-        type="button"
-        style={favBtnCss}
-      >
-        ⭐️
-      </button>
       {data[index].text}
     </div>
   )
@@ -53,8 +47,4 @@ const TagCss = (clrType: string) => css`
   padding: 0 20px;
   background: ${colors[clrType].background};
   white-space: pre-wrap;
-`
-
-const favBtnCss = css`
-  margin-right: 20px
 `
