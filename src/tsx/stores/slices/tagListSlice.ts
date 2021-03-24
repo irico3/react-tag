@@ -4,16 +4,18 @@ import { RootState } from '../index'
 interface tag {
   color: string,
   text: string,
+  isFavorite: boolean,
   id: number
 }
 
-let data: tag[] = [];
-for(let i = 0; i < 100; i++){
-    data.push({
-        color: 'white',
-        text: '夜ネギを買う',
-        id: i
-    })
+const data: tag[] = []
+for (let i = 0; i < 100; i++) {
+  data.push({
+    color: 'white',
+    text: '夜ネギを買う',
+    isFavorite: false,
+    id: i,
+  })
 }
 
 const tagListSlice = createSlice({
@@ -36,16 +38,30 @@ const tagListSlice = createSlice({
       ]
       state.nextId += 1
     },
+    favorite: (state, action) => {
+      Object.values(state.data).forEach((item) => {
+        if (item.id === action.payload) {
+          item.isFavorite = !item.isFavorite
+        }
+      })
+    },
   },
 })
 
 // actionをexport
-export const { addTag } = tagListSlice.actions
+export const { addTag, favorite } = tagListSlice.actions
 // state情報をexport
+
 // 特定の色のタグのみ
 export const colorSelect = (color: string, state: RootState) => {
   const tags: tag[] = Object.values(state.tagList.data)
   return tags.filter((thisTag) => thisTag.color === color)
+}
+
+// 現在のポスト数の確認
+export const colorCountSelect = (color: string, state: RootState) => {
+  const tags = colorSelect(color, state)
+  return tags.length
 }
 
 // reducerをexport → storeへ
