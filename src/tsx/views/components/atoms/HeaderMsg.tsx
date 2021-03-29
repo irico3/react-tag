@@ -1,13 +1,22 @@
 import React, { useState, FC } from 'react'
+import { useDispatch } from 'react-redux'
+
+// store
+import { useSelector } from '../../../stores/index'
+import { changeMsg } from '../../../stores/slices/messageSlice'
 
 export const HeaderMsg: FC = () => {
-  const [message, setMessage] = useState('魚大好き')
+  const dispatch = useDispatch()
+  const { msgTxt } = useSelector((state) => state.message)
+  const changeMsgHandler = () => {
+    dispatch(changeMsg('React大好き'))
+  }
 
   return (
     <>
-      <p>{message}</p>
+      <p>{msgTxt}</p>
       <button
-        onClick={() => setMessage('react大好き')}
+        onClick={changeMsgHandler}
         type="button"
       >
         メッセージを変える

@@ -4,7 +4,6 @@ import { RootState } from '../index'
 interface tag {
   color: string,
   text: string,
-  isFavorite: boolean,
   id: number
 }
 
@@ -13,7 +12,6 @@ for (let i = 0; i < 100; i++) {
   data.push({
     color: 'white',
     text: '夜ネギを買う',
-    isFavorite: false,
     id: i,
   })
 }
@@ -38,18 +36,11 @@ const tagListSlice = createSlice({
       ]
       state.nextId += 1
     },
-    favorite: (state, action) => {
-      Object.values(state.data).forEach((item) => {
-        if (item.id === action.payload) {
-          item.isFavorite = !item.isFavorite
-        }
-      })
-    },
   },
 })
 
 // actionをexport
-export const { addTag, favorite } = tagListSlice.actions
+export const { addTag } = tagListSlice.actions
 // state情報をexport
 
 // 特定の色のタグのみ

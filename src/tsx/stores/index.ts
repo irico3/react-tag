@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useSelector as rawUseSelector } from 'react-redux'
 import tagListSlice from './slices/tagListSlice'
+import messageSlice from './slices/messageSlice'
 
 const store = configureStore({
   reducer: {
     tagList: tagListSlice,
+    message: messageSlice,
   },
 })
 
