@@ -46,13 +46,13 @@ export const { addTag } = tagListSlice.actions
 // 特定の色のタグのみ
 export const colorSelect = createSelector(
   (state: RootState) => state.tagList.data,
-  (state, clrType) => clrType,
+  (state: RootState, clrType: string) => clrType,
   (tags, clrType) => tags.filter((thisTag) => thisTag.color === clrType),
 )
 
 // 現在のポスト数の確認
 export const colorCountSelect = createSelector(
-  (state: RootState, color) => colorSelect(state, color),
+  (state: RootState, color: string) => colorSelect(state, color),
   (tags) => tags.length,
 )
 
