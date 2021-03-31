@@ -50,11 +50,5 @@ export const colorSelect = createSelector(
   (tags, clrType) => tags.filter((thisTag) => thisTag.color === clrType),
 )
 
-// 現在のポスト数の確認
-export const colorCountSelect = createSelector(
-  (state: RootState, color: string) => colorSelect(state, color),
-  (tags) => tags.length,
-)
-
 // reducerをexport → storeへ
 export default tagListSlice.reducer

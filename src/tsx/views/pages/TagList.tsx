@@ -4,7 +4,7 @@ import { FixedSizeList as List } from 'react-window'
 
 // store
 import { useSelector } from '../../stores/index'
-import { colorSelect, colorCountSelect } from '../../stores/slices/tagListSlice'
+import { colorSelect } from '../../stores/slices/tagListSlice'
 // style
 import { colors } from '../../style/components/atoms/Button'
 
@@ -16,8 +16,6 @@ interface ItagList {
  */
 export const TagList: FC<ItagList> = ({ clrType }) => {
   const data = useSelector((state) => colorSelect(state, clrType))
-  const tagCount = useSelector((state) => colorCountSelect(state, clrType))
-
   const tagListItem = ({ index, style }) => (
     <div
       style={style}
@@ -30,10 +28,6 @@ export const TagList: FC<ItagList> = ({ clrType }) => {
 
   return (
     <main>
-      <p css={countCss}>
-        現在のタグ総数:
-        {tagCount}
-      </p>
       <List
         height={500}
         itemCount={data.length}
@@ -45,10 +39,6 @@ export const TagList: FC<ItagList> = ({ clrType }) => {
   )
 }
 
-const countCss = css`
-  padding: 20px;
-`
-
 const TagCss = (clrType: string) => css`
   border: 1px solid #ccc;
   display: flex;
@@ -56,12 +46,4 @@ const TagCss = (clrType: string) => css`
   padding: 0 20px;
   background: ${colors[clrType].background};
   white-space: pre-wrap;
-`
-
-const favBtnCss = css`
-  margin-right: 20px;
-  background: #cacdf7;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
 `
