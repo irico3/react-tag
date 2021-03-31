@@ -15,8 +15,8 @@ interface ItagList {
  * 投稿された付箋をカラー毎に表示するページ
  */
 export const TagList: FC<ItagList> = ({ clrType }) => {
-  const data = useSelector((state) => colorSelect(clrType, state))
-  const tagCount = useSelector((state) => colorCountSelect(clrType, state))
+  const data = useSelector((state) => colorSelect(state, clrType))
+  const tagCount = useSelector((state) => colorCountSelect(state, clrType))
 
   const tagListItem = ({ index, style }) => (
     <div

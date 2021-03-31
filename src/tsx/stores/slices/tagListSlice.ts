@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createSelector } from '@reduxjs/toolkit'
 import { RootState } from '../index'
 
 interface tag {
@@ -44,16 +44,17 @@ export const { addTag } = tagListSlice.actions
 // state情報をexport
 
 // 特定の色のタグのみ
-export const colorSelect = (color: string, state: RootState) => {
-  const tags: tag[] = Object.values(state.tagList.data)
-  return tags.filter((thisTag) => thisTag.color === color)
-}
+export const colorSelect = createSelector(
+  (state: RootState) => state.tagList.data,
+  (state, clrType) => clrType,
+  (tags, clrType) => tags.filter((thisTag) => thisTag.color === clrType),
+)
 
 // 現在のポスト数の確認
-export const colorCountSelect = (color: string, state: RootState) => {
-  const tags = colorSelect(color, state)
-  return tags.length
-}
+export const colorCountSelect = createSelector(
+  (state: RootState, color) => colorSelect(state, color),
+  (tags) => tags.length,
+)
 
 // reducerをexport → storeへ
 export default tagListSlice.reducer
