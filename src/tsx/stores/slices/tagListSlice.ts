@@ -44,7 +44,7 @@ export const { addTag } = tagListSlice.actions
 // state情報をexport
 // 特定の色のタグのみ
 export const colorSelect = (color: string, state: RootState) => {
-  const tags: tag[] = Object.values(state.tagList.data)
+  const tags: tag[] = state.tagList.data
   return tags.filter((thisTag) => thisTag.color === color)
 }
 
